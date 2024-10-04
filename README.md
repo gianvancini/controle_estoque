@@ -1,7 +1,8 @@
-# API usando typescript
+# Aplicaçao usando typescript e react
 
-Steps to run this project:
+Passos para rodar
 
-1. Run `npm i` command
-2. Setup database settings inside `data-source.ts` file
-3. Run `npm run dev` command
+0. Acesse cada uma das pastas, api e front;
+1. Rode em cada uma delas o comando `npm i`;
+2. Configure seu arquivo ".env";
+3. Rode o comando `npm run dev`.

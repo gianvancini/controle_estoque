@@ -9,6 +9,9 @@ export class Vendedor {
     @Column()
     nome: String
 
+    @Column()
+    email: String
+
     @Column({unique: true})
     cpf: String
 
