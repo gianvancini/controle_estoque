@@ -20,4 +20,5 @@ export class Vendedor {
 
     @Column()
     comissao: number
+    
 }

@@ -9,7 +9,7 @@ import { Container } from "react-bootstrap";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className="d-flex" style={{backgroundColor: '#e3e3e3', marginTop: "50px"}}>
+    <div className="d-flex" style={{backgroundColor: '#e3e3e3', paddingTop: "70px", minHeight: "100vh", minWidth: "100vw"}}>
       <SideBar/>
       <div style={{ flexGrow: 1, marginLeft: '250px'}}>
         <NavBar/>

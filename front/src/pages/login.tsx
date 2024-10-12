@@ -26,7 +26,6 @@ export default function Login() {
                   <a href="#" style={{ fontSize: '0.75rem', textDecoration: 'none' }}>Esqueceu sua senha?</a>
               </div>
 
-
               {/* <hr className="my-4" />
               
               <Button variant="outline-danger" className="w-100">

@@ -19,7 +19,7 @@ const Clientes = () => {
     const [showAddToast, setShowAddToast] = useState(false);
     const [showEditToast, setShowEditToast] = useState(false);
 
-    const url = "http://localhost:3002/api/";
+    const url = "http://localhost:3002/api";
 
     const formatDate = (dateString) => {
         const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
