@@ -1,0 +1,31 @@
+{
+   "name": "upf",
+   "version": "0.0.1",
+   "description": "API - typescript, express, postgres",
+   "author": "Gian Vancini",
+   "type": "commonjs",
+   "devDependencies": {
+      "@types/node": "^16.18.106",
+      "ts-node": "10.9.1",
+      "typescript": "4.5.2"
+   },
+   "dependencies": {
+      "@types/cors": "^2.8.17",
+      "@types/express": "^4.17.21",
+      "bcryptjs": "^2.4.3",
+      "cors": "^2.8.5",
+      "dotenv": "^16.4.5",
+      "express": "^4.19.2",
+      "jsonwebtoken": "^9.0.2",
+      "nodemon": "^3.1.4",
+      "pg": "^8.4.0",
+      "reflect-metadata": "^0.1.13",
+      "typeorm": "0.3.20"
+   },
+   "scripts": {
+      "build": "npx tsc",
+      "start": "node build/server.js",
+      "dev": "nodemon server.ts",
+      "typeorm": "typeorm-ts-node-commonjs"
+   }
+}

@@ -1,0 +1,49 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #343a40;
+  color: white;
+  transition: width 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.sidebarOpen {
+  width: 250px;
+}
+
+.sidebarClosed {
+  width: 70px;
+}
+
+.sidebarLink {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.sidebarLink:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  text-decoration: none;
+  color: #ccc;
+}
+
+.sidebarLink:active, .sidebarLink:focus, .sidebarLink:visited {
+  color: white;
+  text-decoration: none; 
+}
+
+.iconStyle {
+  margin-right: 10px;
+}
+
+.childLink {
+  padding-left: 40px;
+  font-size: 0.8em;
+}

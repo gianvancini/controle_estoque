@@ -1,0 +1,16 @@
+.footerBar {
+  z-index: 500;
+  width: 100%;
+  color: white;
+}
+
+.footerBar a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 1rem;
+}
+
+.footerBar a:hover {
+  color: #ccc;
+}
