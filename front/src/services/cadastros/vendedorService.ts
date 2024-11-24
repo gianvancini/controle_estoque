@@ -5,6 +5,7 @@ export interface Vendedor {
     nome: string;
     cpf: string;
     email: string;
+    ativo: boolean;
     comissao: string;
     data_adm?: Date;
 }

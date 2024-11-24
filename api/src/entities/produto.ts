@@ -18,7 +18,19 @@ export class Produto {
 
     @Column()
     estado: String
+
+    @Column()
+    catalogavel: Boolean
+
+    @Column()
+    unico: Boolean
+
+    @Column()
+    tipo: String
     
+    @Column('decimal', { precision: 10, scale: 2 })
+    preco_forn: number
+
     @Column('decimal', { precision: 10, scale: 2 })
     preco_venda: number
 

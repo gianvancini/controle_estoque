@@ -33,7 +33,8 @@ const NovaVenda = () => {
         const clientesData = await fetchClientes();
         setClientes(clientesData);
         const vendedoresData = await fetchVendedores();
-        setVendedores(vendedoresData);
+        const vendedoresAtivos = vendedoresData.filter(vendedor => vendedor.ativo === true);
+        setVendedores(vendedoresAtivos);
       } catch (error) {
         console.error("Erro ao carregar informações para a venda:", error);
       }

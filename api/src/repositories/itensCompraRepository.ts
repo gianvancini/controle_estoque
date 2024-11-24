@@ -1,6 +1,6 @@
 import { AppDataSource } from "../data-source";
-import { ItensCompra } from "../entity/itensCompra";
-import { Produto } from "../entity/produto";
+import { ItensCompra } from "../entities/itensCompra";
+import { Produto } from "../entities/produto";
 import { createEstoque } from "./estoqueRepository"; 
 
 export const getItensCompraByCompraId = async (compraId: number): Promise<ItensCompra[]> => {

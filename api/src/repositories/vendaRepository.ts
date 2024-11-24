@@ -1,5 +1,5 @@
 import { AppDataSource } from "../data-source";
-import { Venda } from "../entity/venda";
+import { Venda } from "../entities/venda";
 
 export const getAllVendas = async (): Promise<Venda[]> => {
     return await AppDataSource.getRepository(Venda).find({

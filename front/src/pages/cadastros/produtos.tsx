@@ -30,8 +30,12 @@ const Produtos = () => {
     modelo: "",
     cor: "",
     capacidade: "",
+    catalogavel: false,
+    unico: false,
     estado: "",
+    tipo: "",
     preco_venda: "",
+    preco_forn: "",
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [produtosPerPage] = useState(6);
@@ -55,9 +59,13 @@ const Produtos = () => {
       marca: produto.marca,
       modelo: produto.modelo,
       cor: produto.cor,
+      tipo: produto.tipo,
       capacidade: produto.capacidade,
+      catalogavel: produto.catalogavel,
+      unico: produto.unico,
       estado: produto.estado,
       preco_venda: produto.preco_venda,
+      preco_forn: produto.preco_forn,
     });
     setShowDetail(true);
   };
@@ -82,9 +90,13 @@ const Produtos = () => {
       marca: "",
       modelo: "",
       cor: "",
+      tipo: "",
       capacidade: "",
+      catalogavel: false,
+      unico: false,
       estado: "",
       preco_venda: "",
+      preco_forn: "",
     });
     setShowAdd(true);
   };
@@ -312,11 +324,65 @@ const Produtos = () => {
                 </Form.Group>
               </Col>
             </Row>
+            <Row className="mb-3">
+              <Col>
+                <Form.Group controlId="formTipo" className="mb-3">
+                  <Form.Label>Tipo</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="tipo"
+                    value={formData.tipo}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+              </Col>
+              <Col>
+              </Col>
+            </Row>
+            <Row className="mb-3">
+              <Col>
+                <Form.Group controlId="formCatalogavel">
+                  <Form.Check
+                    type="checkbox"
+                    label="Catalogável"
+                    name="catalogavel"
+                    checked={formData.catalogavel}
+                    onChange={(e) =>
+                      setFormData({ ...formData, catalogavel: e.target.checked })
+                    }
+                  />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group controlId="formUnico">
+                  <Form.Check
+                    type="checkbox"
+                    label="Único"
+                    name="unico"
+                    checked={formData.unico}
+                    onChange={(e) =>
+                      setFormData({ ...formData, unico: e.target.checked })
+                    }
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
 
             <Row className="mb-3">
               <Col>
+                <Form.Group controlId="formPrecoForn">
+                  <Form.Label>Preco de Custo ($)</Form.Label>
+                  <Form.Control
+                    type="number"
+                    name="preco_forn"
+                    value={formData.preco_forn}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+              </Col>
+              <Col>
                 <Form.Group controlId="formPrecoVenda">
-                  <Form.Label>Preco de Venda</Form.Label>
+                  <Form.Label>Preco de Venda (R$) </Form.Label>
                   <Form.Control
                     type="number"
                     name="preco_venda"
@@ -356,7 +422,7 @@ const Produtos = () => {
               </div>
 
               <div className="row mb-3">
-              <div className="col">
+                <div className="col">
                   <strong>Estado:</strong>
                   <p>{currentProduto.estado}</p>
                 </div>
@@ -368,11 +434,34 @@ const Produtos = () => {
 
               <div className="row mb-3">
                 <div className="col">
-                  <strong>Preço de venda:</strong>
-                  <p>{currentProduto.preco_venda}</p>
+                  <strong>Tipo:</strong>
+                  <p>{currentProduto.tipo}</p>
+                </div>
+                <div className="col">
                 </div>
               </div>
 
+              <div className="row mb-3">
+                <div className="col">
+                  <strong>Catalogável:</strong>
+                  <p>{currentProduto.catalogavel ? "Sim" : "Não"}</p>
+                </div>
+                <div className="col">
+                  <strong>Único:</strong>
+                  <p>{currentProduto.unico ? "Sim" : "Não"}</p>
+                </div>
+              </div>
+
+              <div className="row mb-3">
+                <div className="col">
+                  <strong>Preço de custo ($):</strong>
+                  <p>{currentProduto.preco_forn}</p>
+                </div>
+                <div className="col">
+                  <strong>Preço de venda (R$):</strong>
+                  <p>{currentProduto.preco_venda}</p>
+                </div>
+              </div>
               <Button
                 variant="warning"
                 className="me-2"
@@ -427,14 +516,13 @@ const Produtos = () => {
 
               <Row className="mb-3">
                 <Col>
-                  <Form.Group controlId="formCor">
-                    <Form.Label>Cor</Form.Label>
+                  <Form.Group controlId="formEstado" className="mb-3">
+                    <Form.Label>Estado</Form.Label>
                     <Form.Control
                       type="text"
-                      name="cor"
-                      value={formData.cor}
+                      name="estado"
+                      value={formData.estado}
                       onChange={handleInputChange}
-                      required
                     />
                   </Form.Group>
                 </Col>
@@ -453,25 +541,70 @@ const Produtos = () => {
 
               <Row className="mb-3">
                 <Col>
+                  <Form.Group controlId="formTipo" className="mb-3">
+                    <Form.Label>Tipo</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="tipo"
+                      value={formData.tipo}
+                      onChange={handleInputChange}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col>
+                </Col>
+              </Row>
+
+              <Row className="mb-3">
+                <Col>
+                  <Form.Group controlId="formCatalogavel">
+                    <Form.Check
+                      type="checkbox"
+                      label="Catalogável"
+                      name="catalogavel"
+                      checked={formData.catalogavel}
+                      onChange={(e) =>
+                        setFormData({ ...formData, catalogavel: e.target.checked })
+                      }
+                    />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId="formUnico">
+                    <Form.Check
+                      type="checkbox"
+                      label="Único"
+                      name="unico"
+                      checked={formData.unico}
+                      onChange={(e) =>
+                        setFormData({ ...formData, unico: e.target.checked })
+                      }
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              <Row className="mb-3">
+                <Col>
+                  <Form.Group controlId="formPrecoForn">
+                    <Form.Label>Preco de Custo ($)</Form.Label>
+                    <Form.Control
+                      type="number"
+                      name="preco_forn"
+                      value={formData.preco_forn}
+                      onChange={handleInputChange}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col>
                   <Form.Group controlId="formPrecoVenda">
-                    <Form.Label>Preco de Venda</Form.Label>
+                    <Form.Label>Preco de Venda (R$)</Form.Label>
                     <Form.Control
                       type="number"
                       name="preco_venda"
                       value={formData.preco_venda}
                       onChange={handleInputChange}
                       required
-                    />
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group controlId="formEstado" className="mb-3">
-                    <Form.Label>Estado</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="estado"
-                      value={formData.estado}
-                      onChange={handleInputChange}
                     />
                   </Form.Group>
                 </Col>

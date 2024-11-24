@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Nav, Collapse } from "react-bootstrap";
-import { FaTachometerAlt, FaUsers, FaBars, FaWarehouse, FaShoppingCart, FaChartBar, FaBook, FaUserAlt, FaProductHunt, FaCreditCard, FaShoppingBag, FaHistory } from "react-icons/fa";
+import { FaTachometerAlt, FaUsers, FaBars, FaWarehouse, FaShoppingCart, FaChartBar, FaBook, FaUserAlt, FaProductHunt, FaCreditCard, FaShoppingBag, FaHistory, FaUserShield } from "react-icons/fa";
 import styles from "@/styles/sidebar.module.css";
 import { FaCirclePlus, FaFileCirclePlus } from "react-icons/fa6";
 
@@ -10,11 +10,19 @@ const SideBar = () => {
   const [isCadastrosOpen, setIsCadastrosOpen] = useState(false);
   const [isVendasOpen, setIsVendasOpen] = useState(false);
   const [isComprasOpen, setIsComprasOpen] = useState(false);
+  const [usuarioTipo, setUsuarioTipo] = useState<string | null>(null);
 
   const toggleSidebar = () => setIsOpen(!isOpen);
   const toggleCadastros = () => setIsCadastrosOpen(!isCadastrosOpen);
   const toggleVendas = () => setIsVendasOpen(!isVendasOpen);
   const toggleCompras = () => setIsComprasOpen(!isComprasOpen);
+  
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const tipo = localStorage.getItem('usuarioTipo');
+      setUsuarioTipo(tipo);
+    }
+  }, []);
 
   return (
     <div className={`${styles.sidebar} ${isOpen ? styles.sidebarOpen : styles.sidebarClosed}`}>
@@ -96,6 +104,11 @@ const SideBar = () => {
                 <FaUserAlt className={styles.iconStyle} />
                 {isOpen && "Vendedores"}
               </Nav.Link>
+              {usuarioTipo === "Administrador" && (
+                <Nav.Link as={Link} href="/cadastros/usuarios" className={`${styles.sidebarLink} ${styles.childLink}`}>
+                  <FaUserShield className={styles.iconStyle} />
+                  {isOpen && "Usuários"}
+                </Nav.Link>)}
             </div>
           </Collapse>
 

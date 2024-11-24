@@ -1,6 +1,6 @@
 import { MoreThan } from "typeorm";
 import { AppDataSource } from "../data-source";
-import { Estoque } from "../entity/estoque";
+import { Estoque } from "../entities/estoque";
 
 export const getEstoques = async (): Promise<Estoque[]> => {
     try {

@@ -19,6 +19,9 @@ export class Vendedor {
     @Column()
     data_adm: Date;
 
+    @Column()
+    ativo: boolean;
+
     @Column('decimal', { precision: 5, scale: 2 })
     comissao: number;
 

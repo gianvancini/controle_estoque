@@ -1,6 +1,6 @@
 import { AppDataSource } from "../data-source";
-import { Estoque } from "../entity/estoque";
-import { ItensVenda } from "../entity/itensVenda";
+import { Estoque } from "../entities/estoque";
+import { ItensVenda } from "../entities/itensVenda";
 import { updateEstoque } from "./estoqueRepository"; 
 
 export const getItensVendaByVendaId = async (vendaId: number): Promise<ItensVenda[]> => {
@@ -21,8 +21,10 @@ export const createItensVenda = async (itensVendaData: Partial<ItensVenda>[]): P
         const itensVenda = await itensVendaRepository.save(itensVendaData);
 
         for (const item of itensVenda) {
+            const estoqueId = Number(item.estoque);
+
             const estoque = await AppDataSource.getRepository(Estoque).findOne({
-                where: { id: item.estoque.id },
+                where: { id: estoqueId},
             });
 
             if (!estoque) {

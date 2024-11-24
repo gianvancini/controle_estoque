@@ -1,4 +1,3 @@
-// src/controllers/vendedorController.ts
 import { Request, Response } from "express";
 import * as vendedorRepository from "../repositories/vendedorRepository";
 

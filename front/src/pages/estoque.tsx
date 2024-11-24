@@ -13,7 +13,6 @@ import CustomToast from "./components/CustomToast";
 import {
   fetchEstoque,
   editEstoque,
-  deleteEstoque,
 } from "../services/estoqueService";
 import { FaSearch } from "react-icons/fa";
 
@@ -220,62 +219,52 @@ const Estoques = () => {
           {currentEstoque && (
             <div>
               <Row className="mb-3">
-                <Col md={8}>
-                  <strong>Nome:</strong>
-                  <p>{currentEstoque.nome}</p>
+                <Col md={4}>
+                  <strong>Marca:</strong>
+                  <p>{currentEstoque.produto.marca}</p>
                 </Col>
                 <Col md={4}>
-                  <strong>Data de Nascimento:</strong>
-                  <p>{new Date(currentEstoque.data_nascimento).toLocaleDateString()}</p>
+                  <strong>Modelo:</strong>
+                  <p>{currentEstoque.produto.modelo}</p>
+                </Col>
+                <Col md={4}>
+                  <strong>Capacidade:</strong>
+                  <p>{currentEstoque.produto.capacidade}</p>
                 </Col>
               </Row>
 
               <Row className="mb-3">
                 <Col md={4}>
-                  <strong>CPF:</strong>
-                  <p>{currentEstoque.cpf}</p>
+                  <strong>Cor:</strong>
+                  <p>{currentEstoque.cor}</p>
                 </Col>
                 <Col md={4}>
-                  <strong>Telefone:</strong>
-                  <p>{currentEstoque.telefone}</p>
+                  <strong>Estado:</strong>
+                  <p>{currentEstoque.produto.estado}</p>
                 </Col>
                 <Col md={4}>
-                  <strong>Email:</strong>
-                  <p>{currentEstoque.email}</p>
-                </Col>
-              </Row>
-
-              <Row className="mb-3">
-                <Col md={8}>
-                  <strong>Endereço:</strong>
-                  <p>{currentEstoque.endereco}</p>
-                </Col>
-                <Col md={4}>
-                  <strong>Número:</strong>
-                  <p>{currentEstoque.numero}</p>
+                  <strong>Número de Série:</strong>
+                  <p>{currentEstoque.n_serie}</p>
                 </Col>
               </Row>
 
               <Row className="mb-3">
                 <Col md={4}>
-                  <strong>CEP:</strong>
-                  <p>{currentEstoque.cep}</p>
+                  <strong>Quantidade:</strong>
+                  <p>{currentEstoque.quantidade_disponivel}</p>
                 </Col>
                 <Col md={4}>
-                  <strong>Cidade:</strong>
-                  <p>{currentEstoque.cidade}</p>
+                  <strong>Preço de Custo:</strong>
+                  <p>{currentEstoque.preco_custo}</p>
                 </Col>
                 <Col md={4}>
-                  <strong>UF:</strong>
-                  <p>{currentEstoque.uf}</p>
+                  <strong>Preço de Venda:</strong>
+                  <p>{currentEstoque.produto.preco_venda}</p>
                 </Col>
               </Row>
 
               <Button variant="warning" className="me-2" onClick={handleShowEdit}>
                 Editar
-              </Button>
-              <Button variant="danger" onClick={() => handleDelete(currentEstoque.id)}>
-                Excluir
               </Button>
             </div>
           )}
@@ -291,27 +280,39 @@ const Estoques = () => {
           {currentEstoque && (
             <Form onSubmit={handleEdit}>
               <Row className="mb-3">
-                <Col md={8}>
-                  <Form.Group controlId="formNome">
-                    <Form.Label>Nome</Form.Label>
+                <Col md={4}>
+                  <Form.Group controlId="formMarca">
+                    <Form.Label>Marca:</Form.Label>
                     <Form.Control
                       type="text"
-                      name="nome"
-                      value={formData.nome}
+                      name="marca"
+                      value={formData.produto.marca}
                       onChange={handleInputChange}
-                      required
+                      disabled
                     />
                   </Form.Group>
                 </Col>
                 <Col md={4}>
-                  <Form.Group controlId="formDataNascimento">
-                    <Form.Label>Data de Nascimento</Form.Label>
+                  <Form.Group controlId="formModelo">
+                    <Form.Label>Modelo:</Form.Label>
                     <Form.Control
-                      type="date"
-                      name="data_nascimento"
-                      value={formData.data_nascimento}
+                      type="text"
+                      name="marca"
+                      value={formData.produto.modelo}
                       onChange={handleInputChange}
-                      required
+                      disabled
+                    />
+                  </Form.Group>
+                </Col>
+                <Col md={4}>
+                  <Form.Group controlId="formCapacidade">
+                    <Form.Label>Capacidade:</Form.Label>
+                    <Form.Control
+                      type="number"
+                      name="capacidade"
+                      value={formData.produto.capacidade}
+                      onChange={handleInputChange}
+                      disabled
                     />
                   </Form.Group>
                 </Col>
@@ -319,65 +320,36 @@ const Estoques = () => {
 
               <Row className="mb-3">
                 <Col md={4}>
-                  <Form.Group controlId="formCpf">
-                    <Form.Label>CPF</Form.Label>
+                  <Form.Group controlId="formCor">
+                    <Form.Label>Cor:</Form.Label>
                     <Form.Control
                       type="text"
-                      name="cpf"
-                      value={formData.cpf}
+                      name="cor"
+                      value={formData.cor}
                       onChange={handleInputChange}
-                      required
                     />
                   </Form.Group>
                 </Col>
                 <Col md={4}>
-                  <Form.Group controlId="formTelefone">
-                    <Form.Label>Telefone</Form.Label>
+                  <Form.Group controlId="formEstado">
+                    <Form.Label>Estado:</Form.Label>
                     <Form.Control
                       type="text"
-                      name="telefone"
-                      value={formData.telefone}
+                      name="estado"
+                      value={formData.produto.estado}
                       onChange={handleInputChange}
-                      required
+                      disabled
                     />
                   </Form.Group>
                 </Col>
                 <Col md={4}>
-                  <Form.Group controlId="formEmail">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-
-              <Row className="mb-3">
-                <Col md={8}>
-                  <Form.Group controlId="formEndereco">
-                    <Form.Label>Endereço</Form.Label>
+                  <Form.Group controlId="formNSerie">
+                    <Form.Label>Número de Série:</Form.Label>
                     <Form.Control
                       type="text"
-                      name="endereco"
-                      value={formData.endereco}
+                      name="n_serie"
+                      value={formData.n_serie}
                       onChange={handleInputChange}
-                      required
-                    />
-                  </Form.Group>
-                </Col>
-                <Col md={4}>
-                  <Form.Group controlId="formNumero">
-                    <Form.Label>Número</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="numero"
-                      value={formData.numero}
-                      onChange={handleInputChange}
-                      required
                     />
                   </Form.Group>
                 </Col>
@@ -385,38 +357,38 @@ const Estoques = () => {
 
               <Row className="mb-3">
                 <Col md={4}>
-                  <Form.Group controlId="formCep">
-                    <Form.Label>CEP</Form.Label>
+                  <Form.Group controlId="formQuantidade">
+                    <Form.Label>Quantidade</Form.Label>
                     <Form.Control
-                      type="text"
-                      name="cep"
-                      value={formData.cep}
+                      type="number"
+                      name="quantidade_disponivel"
+                      value={formData.quantidade_disponivel}
                       onChange={handleInputChange}
                       required
                     />
                   </Form.Group>
                 </Col>
                 <Col md={4}>
-                  <Form.Group controlId="formCidade">
-                    <Form.Label>Cidade</Form.Label>
+                  <Form.Group controlId="formPrecoCusto">
+                    <Form.Label>Preço de Custo</Form.Label>
                     <Form.Control
-                      type="text"
-                      name="cidade"
-                      value={formData.cidade}
+                      type="number"
+                      name="preco_custo"
+                      value={formData.preco_custo}
                       onChange={handleInputChange}
                       required
                     />
                   </Form.Group>
                 </Col>
                 <Col md={4}>
-                  <Form.Group controlId="formUf">
-                    <Form.Label>UF</Form.Label>
+                  <Form.Group controlId="formPrecoVenda">
+                    <Form.Label>Preço de Venda</Form.Label>
                     <Form.Control
-                      type="text"
-                      name="uf"
-                      value={formData.uf}
+                      type="number"
+                      name="preco_venda"
+                      value={formData.produto.preco_venda}
                       onChange={handleInputChange}
-                      required
+                      disabled
                     />
                   </Form.Group>
                 </Col>

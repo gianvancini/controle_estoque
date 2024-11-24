@@ -12,5 +12,8 @@ export class Usuario {
     usuario: string;
 
     @Column()
+    tipo: string;
+
+    @Column()
     senha: string;
 }

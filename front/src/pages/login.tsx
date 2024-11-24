@@ -17,9 +17,9 @@ export default function Login() {
 
         try {
             const data = await loginService(usuario, senha);
-            const { token } = data;
+            const { token, usuarioTipo } = data;
 
-            login(token);
+            login(token, usuarioTipo);
             router.push('/');
 
         } catch (err) {

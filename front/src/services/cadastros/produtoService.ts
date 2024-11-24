@@ -6,8 +6,12 @@ export interface Produto {
     marca: String;
     modelo: String;
     cor: String;
+    tipo: String;
+    catalogavel: Boolean;
+    unico: Boolean;
     capacidade: String;
     observacoes?: String;
+    preco_forn: number;
     preco_venda: number;
 }
 

@@ -31,6 +31,7 @@ const Vendedores = () => {
     email: "",
     comissao: "",
     data_adm: "",
+    ativo: true,
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [vendedoresPerPage] = useState(6);
@@ -55,6 +56,7 @@ const Vendedores = () => {
       cpf: vendedor.cpf,
       email: vendedor.email,
       comissao: vendedor.comissao,
+      ativo: vendedor.ativo,
       data_adm: new Date(vendedor.data_adm).toISOString().split("T")[0],
     });
     setShowDetail(true);
@@ -82,6 +84,7 @@ const Vendedores = () => {
       email: "",
       comissao: "",
       data_adm: "",
+      ativo: true,
     });
     setShowAdd(true);
   };
@@ -149,6 +152,22 @@ const Vendedores = () => {
       setFilteredVendedores(vendedoresData);
       handleCloseEdit();
       setShowEditToast(true);
+      setShowDetail(false);
+    } catch (error) {
+      console.error("Erro ao editar vendedor", error);
+    }
+  };
+
+  const handleEditAtivo = async (e) => {
+    e.preventDefault();
+
+    try {
+      const novoAtivo = !currentVendedor.ativo
+      await editVendedor(currentVendedor.id, { ativo: novoAtivo });
+  
+      const vendedoresData = await fetchVendedores();
+      setVendedores(vendedoresData);
+      setFilteredVendedores(vendedoresData);
       setShowDetail(false);
     } catch (error) {
       console.error("Erro ao editar vendedor", error);
@@ -261,6 +280,7 @@ const Vendedores = () => {
             <th className="text-center">Nome</th>
             <th className="text-center">Email</th>
             <th className="text-center">Comissão</th>
+            <th className="text-center">Estado</th>
             <th className="text-center">Ações</th>
           </tr>
         </thead>
@@ -270,6 +290,11 @@ const Vendedores = () => {
               <td className="align-middle">{vendedor.nome}</td>
               <td className="align-middle">{vendedor.email}</td>
               <td className="align-middle text-center">{vendedor.comissao}</td>
+              <td className="align-middle text-center">
+              <span style={{ color: vendedor.ativo ? "green" : "red" }}>
+                {vendedor.ativo ? "ATIVO" : "INATIVO"}
+              </span>
+              </td>
               <td className="align-middle">
                 <Button
                   variant="warning"
@@ -382,9 +407,17 @@ const Vendedores = () => {
         <Modal.Body>
           {currentVendedor && (
             <div>
-              <div className="mb-3">
-                <strong>Nome:</strong>
-                <p>{currentVendedor.nome}</p>
+              <div className="row mb-3">
+                <div className="col">
+                  <strong>Nome:</strong>
+                  <p>{currentVendedor.nome}</p>
+                </div>
+                <div className="col">
+                  <strong>Estado:</strong>
+                  <p><span style={{ color: currentVendedor.ativo ? "green" : "red" }}>
+                  {currentVendedor.ativo ? "ATIVO" : "INATIVO"}
+                </span></p>
+                </div>
               </div>
 
               <div className="row mb-3">
@@ -420,9 +453,17 @@ const Vendedores = () => {
               </Button>
               <Button
                 variant="danger"
+                className="me-2"
                 onClick={() => handleDelete(currentVendedor.id)}
               >
                 Excluir
+              </Button>
+              <Button
+                variant="secondary"
+                className="me-2"
+                onClick={handleEditAtivo}
+              >
+                  {currentVendedor.ativo ? "Inativar" : "Ativar"}
               </Button>
             </div>
           )}

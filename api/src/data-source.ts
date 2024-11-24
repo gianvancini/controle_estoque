@@ -1,15 +1,16 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import dotenv from "dotenv";
-import { Vendedor } from "./entity/vendedor";
-import { Produto } from "./entity/produto";
-import { Cliente } from "./entity/cliente";
-import { Compra } from "./entity/compra";
-import { Venda } from "./entity/venda";
-import { ItensCompra } from "./entity/itensCompra";
-import { ItensVenda } from "./entity/itensVenda";
-import { Estoque } from "./entity/estoque";
-import { Usuario } from "./entity/usuario";
+import { Vendedor } from "./entities/vendedor";
+import { Produto } from "./entities/produto";
+import { Cliente } from "./entities/cliente";
+import { Compra } from "./entities/compra";
+import { Venda } from "./entities/venda";
+import { ItensCompra } from "./entities/itensCompra";
+import { ItensVenda } from "./entities/itensVenda";
+import { Estoque } from "./entities/estoque";
+import { Usuario } from "./entities/usuario";
+import { Taxa } from "./entities/taxa";
 
 dotenv.config();
 
@@ -22,7 +23,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
   logging: false,
-  entities: [Vendedor, Produto, Cliente, Compra, Venda, ItensCompra, ItensVenda, Estoque, Usuario],
+  entities: [Vendedor, Produto, Cliente, Compra, Venda, ItensCompra, ItensVenda, Estoque, Usuario, Taxa],
   migrations: [],
   subscribers: [],
 });

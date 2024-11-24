@@ -29,15 +29,6 @@ export const editEstoque = async (id: number, formData: Estoque): Promise<void> 
     }
 };
 
-export const deleteEstoque = async (id: number): Promise<void> => {
-    try {
-        await axios.delete(`${url}/${id}`);
-    } catch (error) {
-        console.error("Erro ao excluir item do estoque", error);
-        throw error;
-    }
-};
-
 export const updateEstoqueQuantity = async (id: number, quantidade: number): Promise<void> => {
     try {
         const estoqueAtualizado = await axios.patch(`${url}/${id}`, { quantidade_disponivel: quantidade });

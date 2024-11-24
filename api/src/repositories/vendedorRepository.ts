@@ -1,5 +1,5 @@
 import { AppDataSource } from "../data-source";
-import { Vendedor } from "../entity/vendedor";
+import { Vendedor } from "../entities/vendedor";
 
 export const vendedorRepository = AppDataSource.getRepository(Vendedor);
 

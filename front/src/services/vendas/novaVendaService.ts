@@ -51,6 +51,8 @@ export const postVenda = async (venda): Promise<void> => {
             venda: vendaId,
         }));
 
+        console.log(itensVenda)
+
         await axios.post(url_itens, itensVenda);
 
     } catch (error) {
