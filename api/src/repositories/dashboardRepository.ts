@@ -7,13 +7,13 @@ const dataAtual = new Date();
 const inicioMesAtual = new Date(dataAtual.getFullYear(), dataAtual.getMonth(), 1);
 const fimMesAtual = new Date(dataAtual.getFullYear(), dataAtual.getMonth() + 1, 0);
 
+const inicioMesAnterior = new Date(dataAtual.getFullYear(), dataAtual.getMonth() - 1, 1);
+const fimMesAnterior = new Date(dataAtual.getFullYear(), dataAtual.getMonth(), 0);
+
+const inicioMesAntesDoAnterior = new Date(dataAtual.getFullYear(), dataAtual.getMonth() - 2, 1);
+const fimMesAntesDoAnterior = new Date(dataAtual.getFullYear(), dataAtual.getMonth() - 1, 0);
+
 export const getVendasPorMes = async () => {
-
-  const inicioMesAnterior = new Date(dataAtual.getFullYear(), dataAtual.getMonth() - 1, 1);
-  const fimMesAnterior = new Date(dataAtual.getFullYear(), dataAtual.getMonth(), 0);
-
-  const inicioMesAntesDoAnterior = new Date(dataAtual.getFullYear(), dataAtual.getMonth() - 2, 1);
-  const fimMesAntesDoAnterior = new Date(dataAtual.getFullYear(), dataAtual.getMonth() - 1, 0);
 
   try {
     const vendasMesAtual = await AppDataSource.getRepository(Venda).find({
