@@ -75,15 +75,10 @@ const SideBar = () => {
             {isOpen && "Estoque"}
           </Nav.Link>
 
-          <Nav.Link as={Link} href="/catalogo" className={styles.sidebarLink}>
+          {/* <Nav.Link as={Link} href="/catalogo" className={styles.sidebarLink}>
             <FaBook className={styles.iconStyle} />
             {isOpen && "Catálogo"}
-          </Nav.Link>
-
-          <Nav.Link as={Link} href="/simulador" className={styles.sidebarLink}>
-            <FaCreditCard className={styles.iconStyle} />
-            {isOpen && "Parcelamento"}
-          </Nav.Link>
+          </Nav.Link> */}
 
           <div onClick={toggleCadastros} aria-controls="cadastros-collapse" aria-expanded={isCadastrosOpen} className={styles.sidebarLink}>
             <FaFileCirclePlus className={styles.iconStyle} />
@@ -112,10 +107,15 @@ const SideBar = () => {
             </div>
           </Collapse>
 
-          <Nav.Link as={Link} href="/relatorios" className={styles.sidebarLink}>
+          <Nav.Link as={Link} href="/simulador" className={styles.sidebarLink}>
+            <FaCreditCard className={styles.iconStyle} />
+            {isOpen && "Parcelamento"}
+          </Nav.Link>
+
+          {/* <Nav.Link as={Link} href="/relatorios" className={styles.sidebarLink}>
             <FaChartBar className={styles.iconStyle} />
             {isOpen && "Relatórios"}
-          </Nav.Link>
+          </Nav.Link> */}
 
         </Nav>
       </div>
